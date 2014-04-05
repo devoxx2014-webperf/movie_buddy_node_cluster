@@ -120,8 +120,8 @@ if (cluster.isMaster) {
   });
 
 
-  app.listen(args[0] || 4000);
-  console.log("Listening on 4000")
+  app.listen(process.env.PORT || 4000)
+  console.log("Listening ..." + process.env.PORT)
   console.log('Worker ' + cluster.worker.id + ' running!');
 
 }

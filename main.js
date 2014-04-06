@@ -11,9 +11,6 @@ var rates = {};
 
 var preco = require("./libs/euclidean");
 
-
-
-
 // Code to run if we're in the master process
 if (cluster.isMaster) {
 
@@ -116,11 +113,11 @@ if (cluster.isMaster) {
 
   //$.getJSON("users/distance/2164/452", function(data) { console.log(data); })
   app.get("/users/distance/:userid1/:userid2", function(req, res) {
-    res.json(200, preco.distance(rates, req.params.userid1, req.params.userid2));
+    var distance = {distance:preco.distance(rates, req.params.userid1, req.params.userid2)};
+    res.json(200, distance);
   });
 
-
-  app.listen(process.env.PORT || 4000)
+  app.listen(process.env.PORT || 3000)
   console.log("Listening ..." + process.env.PORT)
   console.log('Worker ' + cluster.worker.id + ' running!');
 
